@@ -842,11 +842,11 @@ formulario.addEventListener("submit", async function(evento) {
   // Comprueba que los campos estén completos y el correo sea válido.
   if (!formulario.reportValidity()) return;
 
-  if (URL_APPS_SCRIPT === "https://script.google.com/macros/s/AKfycbyWieMpnyiNcOjb4MTJ_zeGf5c7qVB1p-VWhrTiJcl20_JDaWGmFQ8QZQBm4xs185bK-A/exec") {
-    estado.textContent = "Primero debes configurar la URL de Google Apps Script.";
-    estado.className = "error";
-    return;
-  }
+  if (!URL_APPS_SCRIPT.endsWith("/exec")) {
+  estado.textContent = "Primero debes configurar la URL de Google Apps Script.";
+  estado.className = "error";
+  return;
+}
 
   const datos = new FormData(formulario);
   const parametros = new URLSearchParams();
